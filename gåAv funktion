@@ -1,1 +1,50 @@
+passagerare = []
+max_passagerare = 25
+
+class Person:
+    def __init__(self, namn, ålder, kön):
+        self.namn = namn 
+        self.ålder = ålder
+        self.kön = kön
+    
+    def __str__(self):
+        return f"{self.namn} är {self.kön} och {self.ålder} år gammal."
+    
+def plockaUpp(passagerare, max_passagerare):
+    while True:
+        try:
+            if len(passagerare) < max_passagerare: 
+                namn = input("Ange passagerarens namn: ")
+                
+                while True:  
+                    ålder_str = input("Ange passagerarens ålder: ")
+                    try:
+                        ålder = int(ålder_str)
+                        break  
+                    except ValueError:
+                        print("Felaktig inmatning på ålder. Försök igen med ett heltal.")
+
+                kön = input("Ange passagerarens kön: ")
+                passager = Person(namn, ålder, kön)
+                passagerare.append(passager)
+                print(f"{namn} har plockats upp på bussen.")
+                break
+            else:
+                print("Bussen är full. Passageraren kan inte stiga på.")
+                break
+        except ValueError:
+            print("Något gick fel. Försök igen.")
+
+def gåAv(passagerare):
+    namn = input("Ange passagerarens namn som stiger av bussen:")
+    for person in passagerare:
+        if person.namn == namn:
+            passagerare.remove(person)
+            print(f"{namn} har stiget av bussen.")
+        return 
+    print(f"{namn} finns inte i bussen")
+
+
+plockaUpp(passagerare, max_passagerare)
+gåAv(passagerare)
 
