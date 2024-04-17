@@ -1,0 +1,36 @@
+while True:
+
+print("""
+                      MENY alternativ
+1. Plocka upp ny passagerare   6. Äldsta passageraren
+2. Släpp av passagerare        7. Sortera passagerare
+3. Lista passagerare           8. Lista passagerare inom visst åldersspann...
+4. Beräkna sammanlagd ålder    9. Peta på passagerare
+5. Beräkna medelåldern         Q. Avsluta
+        """)
+
+        menyVal = input("-> ").upper()
+
+        if menyVal == "1":
+            plockaUpp(passagerare, max_passagerare)
+        elif menyVal == "2":
+            gåAv(passagerare)
+        elif menyVal == "3":
+            skrivUt(passagerare)  
+        elif menyVal == "4":
+            sammanlagdÅlder(passagerare)
+        elif menyVal == "5":
+            medelÅlder(passagerare)
+        elif menyVal == "6":
+            äldst(passagerare)
+        elif menyVal == "7":
+            busSort(passagerare)
+        elif menyVal == "8":
+            hittaPassagerare(passagerare)
+        elif menyVal == "9":
+            peta(passagerare)
+        elif menyVal == "Q":
+            break
+
+if __name__ == "__main__":
+    main()
