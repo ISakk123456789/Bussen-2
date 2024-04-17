@@ -20,7 +20,10 @@ def plockaUpp(passagerare, max_passagerare):
                     ålder_str = input("Ange passagerarens ålder: ")
                     try:
                         ålder = int(ålder_str)
-                        break  
+                        if ålder <= 100:
+                            break
+                        else:
+                            print("Åldern får inte vara mer än 100. Försök igen.")
                     except ValueError:
                         print("Felaktig inmatning på ålder. Försök igen med ett heltal.")
 
