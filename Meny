@@ -1,6 +1,56 @@
-while True:
+class Person:
+    def __init__(self, namn, ålder, kön):
+        self.namn = namn 
+        self.ålder = ålder
+        self.kön = kön
+    
+    def __str__(self):
+        return f"{self.namn} är {self.kön} och {self.ålder} år gammal."
+    
+def plockaUpp(passagerare, max_passagerare):
+        while True:
+            try:
+                if len(passagerare) < max_passagerare: 
+                    namn = input("Ange passagerarens namn: ")
+                    if not namn.isalpha():
+                        print("Namnet får bara innehålla bokstäver. Försök igen.")
+                        continue
+                    while True:  
+                        ålder_str = input("Ange passagerarens ålder: ")
+                        try:
+                            ålder = int(ålder_str)
+                            if ålder <= 100:
+                                break
+                            else:
+                                print("Åldern får inte vara mer än 100. Försök igen.")
+                        except ValueError:
+                            print("Felaktig inmatning på ålder. Försök igen med ett heltal.")
 
-print("""
+                    kön = input("Ange passagerarens kön: ")
+                    passager = Person(namn, ålder, kön)
+                    passagerare.append(passager)
+                    print(f"{namn} har plockats upp på bussen.")
+                    break
+                else:
+                    print("Bussen är full. Passageraren kan inte stiga på.")
+                    break
+            except ValueError:
+                print("Något gick fel. Försök igen.")
+
+def gåAv(passagerare):
+    namn = input("Ange passagerarens namn som stiger av bussen:")
+    for person in passagerare:
+        if person.namn == namn:
+            passagerare.remove(person)
+            print(f"{namn} har stiget av bussen.")
+        return
+    
+def main():
+    passagerare = []
+    max_passagerare = 25
+    while True:
+
+        print("""
                       MENY alternativ
 1. Plocka upp ny passagerare   6. Äldsta passageraren
 2. Släpp av passagerare        7. Sortera passagerare
@@ -14,22 +64,6 @@ print("""
         if menyVal == "1":
             plockaUpp(passagerare, max_passagerare)
         elif menyVal == "2":
-            gåAv(passagerare)
-        elif menyVal == "3":
-            skrivUt(passagerare)  
-        elif menyVal == "4":
-            sammanlagdÅlder(passagerare)
-        elif menyVal == "5":
-            medelÅlder(passagerare)
-        elif menyVal == "6":
-            äldst(passagerare)
-        elif menyVal == "7":
-            busSort(passagerare)
-        elif menyVal == "8":
-            hittaPassagerare(passagerare)
-        elif menyVal == "9":
-            peta(passagerare)
-        elif menyVal == "Q":
             break
 
 if __name__ == "__main__":
