@@ -1,0 +1,165 @@
+
+class Person:
+    def __init__(self, namn, ålder, kön):
+        self.namn = namn 
+        self.ålder = ålder
+        self.kön = kön
+    
+    def __str__(self):
+        return f"{self.namn} är {self.kön} och {self.ålder} år gammal."
+    
+def plockaUpp(passagerare, max_passagerare):
+    while True:
+        try:
+            if len(passagerare) < max_passagerare: 
+                namn = input("Ange passagerarens namn: ")
+                if not namn.isalpha():
+                        print("Namnet får bara innehålla bokstäver. Försök igen.")
+                        continue
+                while True:  
+                    ålder_str = input("Ange passagerarens ålder: ")
+                    try:
+                        ålder = int(ålder_str)
+                        if ålder <= 100:
+                            break
+                        else:
+                            print("Åldern får inte vara mer än 100. Försök igen.")
+                    except ValueError:
+                        print("Felaktig inmatning på ålder. Försök igen med ett heltal.")
+
+                while True:
+                    kön = input("Ange passagerarens kön man eller kvinna: ")
+                    kön = kön.lower()
+                    if kön in ["man", "kvinna"]:
+                        break
+                    else:
+                        print("Felaktig inmatning")
+
+                passager = Person(namn, ålder, kön)
+                passagerare.append(passager)
+                print(f"{namn} har plockats upp på bussen.")
+                break
+            else:
+                print("Bussen är full. Passageraren kan inte stiga på.")
+                break
+        except ValueError:
+            print("Något gick fel. Försök igen.")
+
+def gåAv(passagerare):
+        namn = input("Ange passagerarens namn som stiger av bussen:")
+        for person in passagerare:
+            if person.namn == namn:
+                print(f"{namn} har stiget av bussen.")
+                passagerare.remove(person)
+                return
+
+
+def skrivUt(passagerare):
+    print("Passagerare på bussen:")
+    for person in passagerare:
+        print(person)
+
+def sammanlagdÅlder(passagerare):
+    total_ålder = sum(person.ålder for person in passagerare)
+    print("Den sammanlagda åldern på passagerarna är:", total_ålder)
+
+def medelÅlder(passagerare):
+        total_ålder = sum(person.ålder for person in passagerare)
+        if len(passagerare) > 0:
+            medel_ålder = total_ålder / len(passagerare)
+        else:
+            print("Det finns inte några passagerare på bussen")
+    
+        print("Medelåldern på passagerarna är:", medel_ålder)
+
+def äldst(passagerare):
+    äldsta_person = None
+    max_ålder = -1
+    for person in passagerare:
+        if person.ålder > max_ålder:
+            max_ålder = person.ålder
+            äldsta_person = person
+    if äldsta_person:
+        print(f"Äldsta personen på bussen är: {äldsta_person.namn}, ålder: {äldsta_person.ålder}")
+    else:
+        print("Det finns inga passagerare på bussen.")
+
+def äldst_man(passagerare):
+    äldsta_man = None
+    max_ålder = -1
+    for person in passagerare:
+        if person.kön.lower() == "man" and person.ålder > max_ålder:
+            max_ålder = person.ålder
+            äldsta_man = person
+    if äldsta_man:
+        print(f"Äldsta mannen på bussen är: {äldsta_man.namn}, ålder: {äldsta_man.ålder}")
+    else:
+        print("Det finns ingen manlig passagerare på bussen.")
+
+def yngst_kvinna(passagerare):
+    yngsta_kvinna = None
+    min_ålder = float('inf')
+    for person in passagerare:
+        if person.kön.lower() == "kvinna" and person.ålder < min_ålder:
+            min_ålder = person.ålder
+            yngsta_kvinna = person
+    if yngsta_kvinna:
+        print(f"Yngsta kvinnan på bussen är: {yngsta_kvinna.namn}, ålder: {yngsta_kvinna.ålder}")
+    else:
+        print("Det finns ingen kvinnlig passagerare på bussen.")
+
+def hitta_alternativ(passagerare):
+    alternativ = input("Välj ett alternativ:\n1. Hitta äldsta personen\n2. Hitta äldsta mannen\n3. Hitta yngsta kvinnan\n")
+    if alternativ == "1":
+        äldst(passagerare)
+    elif alternativ == "2":
+        äldst_man(passagerare)
+    elif alternativ == "3":
+        yngst_kvinna(passagerare)
+    else:
+        print("Ogiltigt alternativ.")
+
+
+
+
+def main():
+    passagerare = []
+    max_passagerare = 25
+    while True:
+
+        print("""
+                      MENY alternativ
+1. Plocka upp ny passagerare   6. Ålder passagerare(max/min)
+2. Släpp av passagerare        7. Sortera passagerare (finns inte)
+3. Lista passagerare           8. Lista passagerare inom visst åldersspann...(finns inte)
+4. Beräkna sammanlagd ålder    9. Peta på passagerare (finns inte)
+5. Beräkna medelåldern         Q. Avsluta
+        """)
+
+        menyVal = input("-> ").upper()
+
+        if menyVal == "1":
+            plockaUpp(passagerare, max_passagerare)
+        elif menyVal == "2":
+            gåAv(passagerare)
+        elif menyVal == "3":
+            skrivUt(passagerare)
+        elif menyVal == "4":
+            sammanlagdÅlder(passagerare)
+        elif menyVal == "5":
+            medelÅlder(passagerare)
+        elif menyVal == "6":
+            hitta_alternativ(passagerare)
+        elif menyVal == "7":
+            break
+        elif menyVal == "8":
+            break
+        elif menyVal == "9":
+            break
+        elif menyVal == "Q":  
+            break
+
+            
+
+if __name__ == "__main__":
+    main()
