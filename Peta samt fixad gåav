@@ -166,7 +166,10 @@ def peta(passagerare):
             elif ålder > 50 and ålder <= 70:
                 print(f"Lämna mig ifred, säger {person.namn} när hen bli petad på")
             elif ålder > 70 and ålder <= 100:
-                print(f"R.I.P för {person.namn}---💀💀💀💀💀---")
+                print(f"R.I.P för {person.namn}---💀💀💀💀💀---\nDet blev ingen lång busstur för {person.namn} hen släpptes av vid sidan vägen")
+                passagerare.remove(person)
+                print()
+                skrivUt(passagerare)
             return
     print(f"{namn} finns inte på bussen")
 
