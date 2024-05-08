@@ -1,10 +1,13 @@
+
+
+
 ###Introduktion
 
 while True:
     tutorial = input("Vill du ha en tutorial? (ja/nej): ").lower()
     if tutorial == "ja":
         print("""\nHej och välkommen till bussen! Detta är ett spel där du kan skapa dina egna karaktärer som går på bussen.
-Det finns dessutom möjligheten att beräkna passagerarnas medelålder och sammanlagda ålder samt identifiera 
+Det finns dessutom möjligheten att beräkna passagerarnas medelålder och sammanlagda ålder samt identifiera
 vem som är yngst samt älds på bussen. Du kan även låta passagerarna peta på varandra och beroende på deras
 ålder kommer deras reaktion att skilja sig åt.
                
@@ -16,23 +19,23 @@ Allt detta sker med hjälp av våran meny nedan:
         break
     else:
         print("Du måste svara ja eller nej")
-        
+       
 
 
-    
+   
 class Person:
     def __init__(self, namn, ålder, kön):
-        self.namn = namn 
+        self.namn = namn
         self.ålder = ålder
         self.kön = kön
-    
+   
     def __str__(self):
         return f"{self.namn} är {self.kön} och {self.ålder} år gammal."
-    
+   
 def plockaUpp(passagerare, max_passagerare):
     while True:
         try:
-            if len(passagerare) < max_passagerare: 
+            if len(passagerare) < max_passagerare:
                 namn = input("Ange passagerarens namn: ")
                 if not namn.isalpha():
                         print("Namnet får bara innehålla bokstäver. Försök igen.")
@@ -81,7 +84,6 @@ def gåAv(passagerare):
                 return  # Om personen hittades och togs bort, avsluta funktionen
         print("Denna passageraren finns inte på bussen.... Försök igen")
 
-
 def skrivUt(passagerare):
     print("Passagerare på bussen:")
     for person in passagerare:
@@ -97,8 +99,8 @@ def medelÅlder(passagerare):
             medel_ålder = total_ålder / len(passagerare)
         else:
             print("Det finns inte några passagerare på bussen")
-    
-        print("Medelåldern på passagerarna är:", medel_ålder)
+   
+        print("Medelåldern på passagerarna är:", round(medel_ålder))
 
 def äldst(passagerare):
     äldsta_person = None
@@ -148,17 +150,25 @@ def åld_alternativ(passagerare):
         print("Ogiltigt alternativ.")
 
 def peta(passagerare):
+    skrivUt(passagerare)
     namn = input("Ange passagerarens namn som du vill peta på:")
     for person in passagerare:
         if person.namn == namn:
             ålder = person.ålder
             if ålder >= 1 and ålder <= 5:
-                print(f"{person.namn} skriker när hen bli petad på ")
+                print(f"{person.namn} skriker när hen bli petad på.")
+            elif ålder > 5 and ålder <= 10:
+                print(f"Jag berättar för mamma, säger {person.namn} när hen bli petad på.")
+            elif ålder > 10 and ålder <= 30:
+                print(f"{person.namn} skrattar när hen bli petad på.")
+            elif ålder > 30 and ålder <= 50:
+                print(f"{person.namn} reagerar surt när hen bli petad på.")
+            elif ålder > 50 and ålder <= 70:
+                print(f"Lämna mig ifred, säger {person.namn} när hen bli petad på")
+            elif ålder > 70 and ålder <= 100:
+                print(f"R.I.P för {person.namn}---💀💀💀💀💀---")
             return
-
-
-
-
+    print(f"{namn} finns inte på bussen")
 
 def main():
     passagerare = []
@@ -168,9 +178,9 @@ def main():
         print("""
                       MENY alternativ
 1. Plocka upp ny passagerare   6. Ålder passagerare(min/max)
-2. Släpp av passagerare        7. Sortera passagerare (finns inte)
-3. Lista passagerare           8. Lista passagerare inom visst åldersspann...(finns inte)
-4. Beräkna sammanlagd ålder    9. Peta på passagerare (finns inte)
+2. Släpp av passagerare        7. Sortera passagerare
+3. Lista passagerare           8. Lista passagerare inom visst åldersspann...
+4. Beräkna sammanlagd ålder    9. Peta på passagerare
 5. Beräkna medelåldern         Q. Avsluta
         """)
 
@@ -197,7 +207,8 @@ def main():
         elif menyVal == "Q":  
             break
 
-            
+           
 
 if __name__ == "__main__":
     main()
+
