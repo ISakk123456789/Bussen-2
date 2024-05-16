@@ -3,13 +3,11 @@
 while True:
     tutorial = input("Vill du ha en tutorial? (ja/nej): ").lower()
     if tutorial == "ja":
-        print("""\nHej och välkommen till bussen! Detta är ett spel där du kan skapa dina egna karaktärer som går på bussen.
-Det finns dessutom möjligheten att beräkna passagerarnas medelålder och sammanlagda ålder samt identifiera
-vem som är yngst samt älds på bussen. Du kan även låta passagerarna peta på varandra och beroende på deras
-ålder kommer deras reaktion att skilja sig åt.
-               
-Allt detta sker med hjälp av våran meny nedan:
-               """)
+        print("""\nDetta är ett spel där du som amvändare är en busschafför.
+Spelet går ut på att plocka upp och släppa av passagerare.
+Det finns många funktioner som låter dig beräkna olika 
+värden på passagerarna. Alternativen finns i menyn nedan.
+Lycka till!""")
         break
     elif tutorial == "nej":
         print("\nOkej, du vill inte ha en tutorial.")
