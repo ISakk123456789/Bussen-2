@@ -3,7 +3,7 @@
 while True:
     tutorial = input("Vill du ha en tutorial? (ja/nej): ").lower()
     if tutorial == "ja":
-        print("""\nDetta är ett spel där du som amvändare är en busschafför.
+        print("""\nDetta är ett spel där du som användare är en busschafför.
 Spelet går ut på att plocka upp och släppa av passagerare.
 Det finns många funktioner som låter dig beräkna olika 
 värden på passagerarna. Alternativen finns i menyn nedan.
